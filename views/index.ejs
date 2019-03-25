@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- THIS FILE IS THE HOME PAGE TO DISPLAY FRIENDS!!!!!!!! -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="main.js"></script>
+    <title>INDEX FOR FRIENDS</title>
+</head>
+<body>
+    <div id="wrapper">
+        <!-- This is the endpoint that the button is attached to.. when pressed it will log you out -->
+        <a href="/logout">
+            <button type="button" class="logout">Logout</button>
+        </a>
+         <!-- This is the link that when you click it, will send you to the ejs file for displaying followers -->
+        <a class="link" href="/followers">
+                Click to see followers!
+            </a>
+        <div id="friends-column" class="column">
+            <h1>Your friends</h1>        <ul id="friends">
+            <!-- This will increment for each friend you have and display their name, screen-name, location, and pic -->
+            <!-- This is a javascript script in a ejs file -->
+                <% friends.forEach(function(friend) {%> 
+                    <li uid="<%= friend.twitter_id %>" class="friend">
+                        <img class="profile-image" src="<%=friend.profile_image_url %>">
+                        <p>
+                            <span class="name">
+                                <%= friend.name %>
+                            </span>
+                            <span class"screen-name">
+                                <%= friend.screen_name %>
+                            </span>
+                        </p>
+                        <p class="location">
+                            <%= friend.location %>
+                        </p>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+        <!-- This is the notes column on the page -->
+        <div id="notes-column" class="column">
+            <h1>Notes</h1>
+            <ul id="notes"></ul>
+        </div>
+    </div>
+</body>
+</html>
